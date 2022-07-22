@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
-use App\Models\Category;
-
-
 
 class NewsController extends Controller
 {
@@ -50,41 +47,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //Jalar informacion 
-        $news = News::find($id);
-
-        if(!$news){
-            return response()->json([
-                'success' => false,
-                'data' => $news
-            ], 404);  
-        }
-
-        //Find category using news.category_id and add a field with the category name
-        $category = Category::find($news->category_id);
-        $news['categorie']= $category->name; 
-
-        return response()->json([
-            'success' => true,
-            'data' => $news
-        ], 200);
-    }
-    
-    public function findNewsByCategory($idCategory)
-    {
-        //Jalar informacion 
-        $news = News::where('category_id', $idCategory)->get();
-
-        if(!$news){
-            return response()->json([
-                'success' => false,
-                'data' => $news
-            ], 404);  
-        }
-        return response()->json([
-            'success' => true,
-            'data' => $news
-        ], 200);
+        //
     }
 
     /**
